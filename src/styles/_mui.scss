@@ -1,0 +1,23 @@
+.MuiDialogTitle-root {
+    font-family: "Oswald", sans-serif !important;
+}
+
+.MuiFormHelperText-root.Mui-error {
+    margin-left: 0px;
+}
+
+.MuiStepConnector-line.MuiStepConnector-lineHorizontal {
+    border-top-width: 3px;
+}
+.Mui-active {
+    .MuiStepConnector-line.MuiStepConnector-lineHorizontal {
+        border-top-width: 3px;
+        border-color: #1A5532;
+    }
+}
+.Mui-completed {
+    .MuiStepConnector-line.MuiStepConnector-lineHorizontal {
+        border-top-width: 3px;
+        border-color: #1A5532;
+    }
+}

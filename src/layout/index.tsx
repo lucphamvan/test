@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import Header from "./header";
 import Content from "./content";
 import Footer from "./footer";
+import Header from "./header";
 
 const Container = styled.div`
     display: flex;

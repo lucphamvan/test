@@ -3,32 +3,50 @@ import { createTheme } from "@mui/material";
 export const lightTheme = createTheme({
     palette: {
         primary: {
-            light: "#99d066",
-            main: "#689f38",
-            dark: "#387002",
-            contrastText: "#fff",
-        },
+            light: "#48825c",
+            main: "#1a5532",
+            dark: "#002b0b",
+            contrastText: "#eef7f7"
+        }
     },
     typography: {
-        fontFamily: `'Rajdhani', sans-serif`,
+        fontFamily: `'Roboto', sans-serif`
     },
     components: {
         MuiCssBaseline: {
             styleOverrides: {
                 body: {
-                    background: "#F3F7F7",
-                    fontWeight: 500,
-                    color: "#282C34",
-                },
-            },
+                    background: "#f9ffff",
+                    fontWeight: 400,
+                    color: "#143127"
+                }
+            }
         },
         MuiButton: {
             styleOverrides: {
                 root: {
-                    fontWeight: 700,
+                    fontWeight: 600,
+                    fontSize: 14,
                     borderRadius: 4,
-                },
-            },
+                    fontFamily: `'Roboto Condensed', sans-serif`,
+                    boxShadow: "none"
+                }
+            }
         },
-    },
+        MuiInputBase: {
+            styleOverrides: {
+                input: {
+                    fontWeight: 400
+                }
+            }
+        },
+        MuiInputLabel: {
+            styleOverrides: {
+                root: {
+                    fontWeight: 400,
+                    fontSize: 13
+                }
+            }
+        }
+    }
 });

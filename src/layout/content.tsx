@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 const Content = () => {
     return (
-        <Container maxWidth="xl" sx={{ flexGrow: 1, paddingY: "1rem" }}>
+        <Container maxWidth="lg" sx={{ flexGrow: 1, paddingY: "1rem", display: "flex", flexDirection: "column" }}>
             <Outlet />
         </Container>
     );

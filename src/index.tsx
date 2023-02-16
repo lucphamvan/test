@@ -1,14 +1,20 @@
+import { Loading } from "@/components";
+import { store } from "@/redux/store";
+import "@/styles/index.scss";
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { CircularProgress } from "@mui/material";
+
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
 root.render(
     <React.StrictMode>
-        <React.Suspense fallback={<CircularProgress color="primary" />}>
-            <App />
+        <React.Suspense fallback={<Loading />}>
+            <Provider store={store}>
+                <App />
+            </Provider>
         </React.Suspense>
     </React.StrictMode>
 );

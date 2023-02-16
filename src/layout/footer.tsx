@@ -4,14 +4,16 @@ import { Container } from "@mui/material";
 const FooterContainer = styled.div`
     display: flex;
     align-items: center;
-    background-color: #262626;
-    height: 70px;
+    background-color: #020803;
+    height: 40px;
+    color: #c5c5c5;
+    text-align: center;
 `;
 
 const Footer = () => {
     return (
         <FooterContainer>
-            <Container maxWidth="xl"></Container>
+            <Container maxWidth="lg">2022 Kun.Ltd.. Copyright</Container>
         </FooterContainer>
     );
 };

@@ -1,16 +1,20 @@
-import ThemeProvider from "context/theme-context";
+import AppProvider from "@/context/app-context";
+import { useAppDispatch } from "@/redux/hook";
+import { fetchUserInfo } from "@/redux/slice/authen.slice";
+import Router from "@/router";
 import { useEffect } from "react";
-import Router from "router";
 
 function App() {
+    const dispatch = useAppDispatch();
+
     useEffect(() => {
-        // dispatch(checkAuthentication)
-    }, []);
+        dispatch(fetchUserInfo());
+    }, [dispatch]);
 
     return (
-        <ThemeProvider>
+        <AppProvider>
             <Router />
-        </ThemeProvider>
+        </AppProvider>
     );
 }
 

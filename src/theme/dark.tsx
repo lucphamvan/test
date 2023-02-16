@@ -7,28 +7,28 @@ export const darkTheme = createTheme({
             light: "#99d066",
             main: "#689f38",
             dark: "#387002",
-            contrastText: "#fff",
-        },
+            contrastText: "#fff"
+        }
     },
     typography: {
-        fontFamily: `'Rajdhani', sans-serif`,
+        fontFamily: `'Rajdhani', sans-serif`
     },
     components: {
         MuiCssBaseline: {
             styleOverrides: {
                 body: {
                     background: "#030c0c",
-                    fontWeight: 500,
-                },
-            },
+                    fontWeight: 500
+                }
+            }
         },
         MuiButton: {
             styleOverrides: {
                 root: {
                     fontWeight: 700,
-                    borderRadius: 4,
-                },
-            },
-        },
-    },
+                    borderRadius: 4
+                }
+            }
+        }
+    }
 });
