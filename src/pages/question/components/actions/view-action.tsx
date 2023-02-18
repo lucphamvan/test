@@ -2,7 +2,7 @@ import { Flex } from "@/components";
 import { useDisclosure } from "@/hook/useDisclosure";
 import { Question } from "@/types/question";
 import { DoneAll as CorrectIcon, Visibility } from "@mui/icons-material";
-import { Dialog, DialogContent, DialogTitle, IconButton, Stack, TextField } from "@mui/material";
+import { Dialog, DialogContent, DialogTitle, IconButton, Stack } from "@mui/material";
 import { AnswerContent, Box, QuestionBox, Title } from "./view-action.styled";
 
 interface Props {

@@ -1,3 +1,5 @@
+import { Question } from "./question";
+
 export interface Quiz {
     id: string;
     setting: QuizSetting;
@@ -22,4 +24,9 @@ export interface GetQuizzesResponse {
 
 export interface CreateQuizInput {
     setting: QuizSetting;
+}
+
+export interface InsertQuestionResponse {
+    quiz: Quiz;
+    question: Question;
 }

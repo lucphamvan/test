@@ -1,3 +1,4 @@
+import { Card } from "@/components";
 import { useNotify } from "@/hook/useNotify";
 import { createQuiz } from "@/services/quiz.service";
 import { NotifyType } from "@/types/general";
@@ -88,8 +89,7 @@ const CreateQuizView = (props: Props) => {
         //
         try {
             const quiz = await createQuiz(data);
-            console.log("quiz", JSON.stringify(quiz));
-            setQuiz && setQuiz(quiz);
+            setQuiz(quiz);
             notify("Create quiz successfull", NotifyType.success);
             goNextStep();
         } catch (error: any) {
@@ -98,65 +98,72 @@ const CreateQuizView = (props: Props) => {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <Stack gap="1rem">
-                <Box mb="1rem">
-                    <Typography variant="body1" fontWeight="600">
-                        Create Quiz
-                    </Typography>
-                    <Typography variant="body2">Setup quiz information</Typography>
-                </Box>
-                <Grid container spacing="1rem">
-                    <Grid item xs={12} md={6}>
-                        <TextField
-                            fullWidth
-                            {...register("setting.name")}
-                            label="Name *"
-                            error={!!(errors?.setting as any)?.name}
-                            helperText={(errors?.setting as any)?.name?.message}
-                        />
+        <Card p="2rem">
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <Stack gap="1rem">
+                    <Box mb="1rem">
+                        <Typography variant="body1" fontWeight="600">
+                            Create Quiz
+                        </Typography>
+                        <Typography variant="body2">Setup quiz information</Typography>
+                    </Box>
+                    <Grid container spacing="1rem">
+                        <Grid item xs={12} md={6}>
+                            <TextField
+                                fullWidth
+                                {...register("setting.name")}
+                                label="Name *"
+                                error={!!(errors?.setting as any)?.name}
+                                helperText={(errors?.setting as any)?.name?.message}
+                            />
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <TextField
+                                fullWidth
+                                type="number"
+                                defaultValue={0}
+                                {...register("setting.duration")}
+                                label="Duration (second) *"
+                                error={!!(errors?.setting as any)?.duration}
+                                helperText={(errors?.setting as any)?.duration?.message}
+                            />
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <DatePicker
+                                value={startDate}
+                                onChange={onStartDateChange}
+                                label="Start time *"
+                                minDate={moment()}
+                                renderInput={(params) => (
+                                    <TextField
+                                        {...params}
+                                        fullWidth
+                                        error={!!startDateError}
+                                        helperText={startDateError}
+                                    />
+                                )}
+                            />
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <DatePicker
+                                value={endDate}
+                                onChange={onEndDateChange}
+                                label="End time *"
+                                minDate={startDate as any}
+                                renderInput={(params) => (
+                                    <TextField fullWidth {...params} error={!!endDateError} helperText={endDateError} />
+                                )}
+                            />
+                        </Grid>
                     </Grid>
-                    <Grid item xs={12} md={6}>
-                        <TextField
-                            fullWidth
-                            type="number"
-                            defaultValue={0}
-                            {...register("setting.duration")}
-                            label="Duration (second) *"
-                            error={!!(errors?.setting as any)?.duration}
-                            helperText={(errors?.setting as any)?.duration?.message}
-                        />
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <DatePicker
-                            value={startDate}
-                            onChange={onStartDateChange}
-                            label="Start time *"
-                            minDate={moment()}
-                            renderInput={(params) => (
-                                <TextField {...params} fullWidth error={!!startDateError} helperText={startDateError} />
-                            )}
-                        />
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <DatePicker
-                            value={endDate}
-                            onChange={onEndDateChange}
-                            label="End time *"
-                            minDate={startDate as any}
-                            renderInput={(params) => (
-                                <TextField fullWidth {...params} error={!!endDateError} helperText={endDateError} />
-                            )}
-                        />
-                    </Grid>
-                </Grid>
-                <Box>
-                    <Button variant="contained" onClick={() => onSubmit("aaa")} disabled={isSubmitting}>
-                        CREATE
-                    </Button>
-                </Box>
-            </Stack>
-        </form>
+                    <Box>
+                        <Button variant="contained" onClick={() => onSubmit("aaa")} disabled={isSubmitting}>
+                            CREATE
+                        </Button>
+                    </Box>
+                </Stack>
+            </form>
+        </Card>
     );
 };
 

@@ -4,6 +4,7 @@
 
 .MuiFormHelperText-root.Mui-error {
     margin-left: 0px;
+    font-size: 12px;
 }
 
 .MuiStepConnector-line.MuiStepConnector-lineHorizontal {
@@ -12,12 +13,12 @@
 .Mui-active {
     .MuiStepConnector-line.MuiStepConnector-lineHorizontal {
         border-top-width: 3px;
-        border-color: #1A5532;
+        border-color: #1a5532;
     }
 }
 .Mui-completed {
     .MuiStepConnector-line.MuiStepConnector-lineHorizontal {
         border-top-width: 3px;
-        border-color: #1A5532;
+        border-color: #1a5532;
     }
 }

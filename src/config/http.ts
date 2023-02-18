@@ -4,7 +4,7 @@ import axios from "axios";
 import { API } from "./api";
 import { ACC_TOKEN_KEY, REFRESH_TOKEN_KEY } from "./const";
 
-axios.defaults.baseURL = process.env.REACT_APP_API_URL || "http://localhost:8000/";
+axios.defaults.baseURL = process.env.REACT_APP_API_URL || "http://192.168.1.6:8000";
 
 const BY_PASS_URL = [API.LOGIN, API.REFRESH_TOKEN, API.LOGOUT];
 

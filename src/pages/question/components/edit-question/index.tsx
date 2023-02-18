@@ -195,20 +195,14 @@ const EditQuestion = ({ question, refreshData }: Props) => {
                                 {/* notice */}
                                 <Notice />
                                 {/* question content */}
-                                <div>
-                                    <TextField
-                                        {...register("content")}
-                                        fullWidth
-                                        multiline
-                                        rows={3}
-                                        label="Question *"
-                                    />
-                                    <TextFieldError errors={errors} name="content" />
-                                </div>
+
+                                <TextField {...register("content")} fullWidth multiline rows={3} label="Question *" />
+                                <TextFieldError errors={errors} name="content" />
+
                                 {/* render answer options */}
                                 {renderAnswerOptions()}
                                 {/* error answer options */}
-                                <TextFieldError name="answer_option" errors={errors} />
+                                <TextFieldError name="choices" errors={errors} />
                                 {/* button add answer */}
                                 <Stack flexDirection="row">
                                     <Button

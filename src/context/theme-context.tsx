@@ -1,14 +1,14 @@
+import { darkTheme, lightTheme } from "@/theme";
 import { CssBaseline, ThemeProvider as MUIThemeProvider } from "@mui/material";
 import { createContext, FC, useEffect, useMemo, useState } from "react";
-import { darkTheme, lightTheme } from "theme";
 
 export enum THEME_MODE {
     dark = "dark",
-    light = "light",
+    light = "light"
 }
 export const ThemeContext = createContext({
     toggleTheme: () => {},
-    mode: THEME_MODE.dark,
+    mode: THEME_MODE.dark
 });
 
 const ThemeProvider: FC<any> = ({ children }) => {

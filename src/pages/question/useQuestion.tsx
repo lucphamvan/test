@@ -24,7 +24,7 @@ const useQuestion = () => {
             try {
                 setLoading(true);
                 const data = await getQuestions(limit, offset);
-                setQuestions(data.items);
+                data.items ? setQuestions(data.items) : setQuestions([]);
                 setPageCount(totalPage(data.total, limit));
             } catch (error: any) {
                 notify("Cannot get list users : " + error.message, NotifyType.error);

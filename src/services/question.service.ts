@@ -2,7 +2,7 @@ import { API } from "@/config/api";
 import axios from "@/config/http";
 import { CreateQuestionInput, GetQuestionsResponse, UpdateQuestionInput } from "@/types/question";
 
-export const getQuestions = async (limit: number, offset: number) => {
+export const getQuestions = async (limit?: number, offset?: number) => {
     const response = await axios.get(API.QUESTIONS, {
         params: {
             limit,
@@ -14,7 +14,7 @@ export const getQuestions = async (limit: number, offset: number) => {
 
 export const createQuestion = async (input: CreateQuestionInput) => {
     const response = await axios.post(API.QUESTIONS, input);
-    return response;
+    return response.data;
 };
 
 export const deleteQuestion = async (id: string) => {
