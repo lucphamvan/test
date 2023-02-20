@@ -1,11 +1,12 @@
 import { Card, Heading } from "@/components";
 import { getQuestionsOfQuiz } from "@/services/quiz.service";
-import { Box, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import { useContext, useEffect } from "react";
 import { QuizContext } from "../..";
+import QuestionItem from "./question-item";
 
-const ListQuestion = () => {
-    const { quiz, questions, setQuestions, setCurrentQuestion } = useContext(QuizContext);
+const QuestionList = () => {
+    const { quiz, questions, setQuestions } = useContext(QuizContext);
 
     useEffect(() => {
         // get list question of quiz
@@ -24,13 +25,11 @@ const ListQuestion = () => {
 
     return (
         <Card p="2rem">
-            <Stack>
+            <Stack gap="1rem">
                 <Heading>{quiz?.setting.name}</Heading>
                 <Stack gap="1rem">
-                    {questions?.map((q) => (
-                        <Box key={q.id} p="1rem" border="1px solid gray" onClick={() => setCurrentQuestion(q)}>
-                            {q.content}
-                        </Box>
+                    {questions?.map((q, index) => (
+                        <QuestionItem question={q} index={index} key={`q-i-${q.id}`} />
                     ))}
                 </Stack>
             </Stack>
@@ -38,4 +37,4 @@ const ListQuestion = () => {
     );
 };
 
-export default ListQuestion;
+export default QuestionList;

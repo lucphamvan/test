@@ -22,13 +22,17 @@ interface QuizContextProp {
 export const QuizContext = React.createContext<QuizContextProp>({} as any);
 const CreateQuizPage = () => {
     const [activeStep, setActiveStep] = useState(1);
-    const [quiz, setQuiz] = useState<Quiz>(mockQuiz);
+    const [quiz, setQuiz] = useState<Quiz>(mockQuiz as Quiz);
     const [questions, setQuestions] = useState<Question[]>([]);
     const [currentQuestion, setCurrentQuestion] = useState<Question>(genQuestion());
     const resetRef = useRef<any>();
 
     const goNextStep = useCallback(() => {
         setActiveStep((step) => step + 1);
+    }, [setActiveStep]);
+
+    const goPreviousStep = useCallback(() => {
+        setActiveStep((step) => step - 1);
     }, [setActiveStep]);
 
     return (
@@ -39,7 +43,7 @@ const CreateQuizPage = () => {
                 <Breadcrumbs />
                 <StepProcess activeStep={activeStep} />
                 {activeStep === 0 && <CreateQuizView goNextStep={goNextStep} />}
-                {activeStep === 1 && <AddQuestionView goNextStep={goNextStep} />}
+                {activeStep === 1 && <AddQuestionView goPreviousStep={goPreviousStep} goNextStep={goNextStep} />}
             </Stack>
         </QuizContext.Provider>
     );

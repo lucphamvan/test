@@ -157,7 +157,7 @@ const CreateQuizView = (props: Props) => {
                         </Grid>
                     </Grid>
                     <Box>
-                        <Button variant="contained" onClick={() => onSubmit("aaa")} disabled={isSubmitting}>
+                        <Button variant="contained" type="submit" disabled={isSubmitting}>
                             CREATE
                         </Button>
                     </Box>

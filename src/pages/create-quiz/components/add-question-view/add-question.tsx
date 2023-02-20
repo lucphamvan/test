@@ -11,13 +11,13 @@ import { QuizContext } from "../..";
 const AddQuestion = () => {
     const { quiz, setQuestions, currentQuestion, resetRef } = useContext(QuizContext);
     const notify = useNotify();
-    const title = currentQuestion.id ? "Update question" : "New question";
+    const title = currentQuestion.id ? "Update question" : "Add new question";
 
     // create | edit questions
     const onSubmit = async (value: CreateQuestionInput) => {
         const correctIds = value.choices.filter((choice) => choice.isCorrect).map((choice) => choice.id);
         value.correct_choice_ids = correctIds;
-        // case 1 : new question => add it to quiz
+        // case 1 : insert new question to quiz
         if (!currentQuestion?.id) {
             const result = await insertQuestionToQuiz(quiz!.id, value);
             setQuestions((questions) => {
@@ -32,12 +32,12 @@ const AddQuestion = () => {
         // case 2: update question
         await updateQuestion(currentQuestion.id, value);
         setQuestions((questions) => {
-            const clone = structuredClone(questions) as Question[];
-            const index = clone.findIndex((q) => q.id === currentQuestion.id);
-            clone[index].content = value.content;
-            clone[index].choices = value.choices;
-            clone[index].correct_choice_ids = value.correct_choice_ids;
-            return clone;
+            const _questions = structuredClone(questions) as Question[];
+            const index = _questions.findIndex((q) => q.id === currentQuestion.id);
+            _questions[index].content = value.content;
+            _questions[index].choices = value.choices;
+            _questions[index].correct_choice_ids = value.correct_choice_ids;
+            return _questions;
         });
         notify("Update question successfull", NotifyType.success);
     };
