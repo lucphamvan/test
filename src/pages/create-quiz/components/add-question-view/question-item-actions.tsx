@@ -8,6 +8,7 @@ const Wrapper = styled(Flex)`
     position: absolute;
     top: 0.75rem;
     right: 1rem;
+    background-color: #f9ffff;
 `;
 
 interface QuestionItemActionsProp {
@@ -33,13 +34,13 @@ const QuestionItemActions = ({ onExpand, onEdit }: QuestionItemActionsProp) => {
     return (
         <Wrapper>
             <IconButton size="small" className="action-btn" onClick={handleEdit}>
-                <Edit sx={{ fontSize: 16 }} />
+                <Edit sx={{ fontSize: 16, color: "#1A5532" }} />
             </IconButton>
             <IconButton size="small" className="action-btn" onClick={handleDetele}>
-                <Delete sx={{ fontSize: 16 }} />
+                <Delete sx={{ fontSize: 16, color: "#1A5532" }} />
             </IconButton>
             <IconButton size="small" className="action-btn" onClick={handleExpand}>
-                <ExpandMore sx={{ fontSize: 16 }} />
+                <ExpandMore sx={{ fontSize: 16, color: "#1A5532" }} />
             </IconButton>
         </Wrapper>
     );

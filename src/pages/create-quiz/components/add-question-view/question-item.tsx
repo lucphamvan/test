@@ -1,7 +1,7 @@
 import { Flex } from "@/components";
 import { useDisclosure } from "@/hook/useDisclosure";
 import { Choice, Question } from "@/types/question";
-import { Box, Collapse, Stack } from "@mui/material";
+import { Collapse, Stack } from "@mui/material";
 import React, { useCallback, useContext } from "react";
 import { QuizContext } from "../..";
 import QuestionItemActions from "./question-item-actions";
@@ -13,13 +13,12 @@ interface ChoiceItemProp {
 }
 const ChoiceItem = ({ choice, index }: ChoiceItemProp) => {
     const char = String.fromCharCode(97 + index);
-    const bgColor = choice.isCorrect ? "#86c986" : "#e0ebe0";
+    const backgroundColor = choice.isCorrect ? "#1A5532" : "#D8EBD9";
+    const color = choice.isCorrect ? "#fff" : "#1A5532";
     return (
-        <ChoiceWrapper icon={false} correct={choice.isCorrect}>
-            <Flex gap="0.5rem">
-                <NumberWrapper bgcolor={bgColor}>{char}</NumberWrapper>
-                <ChoiceContent>{choice.content}</ChoiceContent>
-            </Flex>
+        <ChoiceWrapper onClick={(e) => e.stopPropagation()}>
+            <NumberWrapper style={{ backgroundColor, color }}>{char}</NumberWrapper>
+            <ChoiceContent>{choice.content}</ChoiceContent>
         </ChoiceWrapper>
     );
 };
@@ -49,9 +48,10 @@ const QuestionItem = React.memo(({ question, index }: QuestionItemProp) => {
     return (
         <QuestionWrapper onClick={onExpand}>
             <QuestionItemActions onExpand={onExpand} onEdit={onEdit} />
-            <Flex>
-                <Box>{index + 1}.</Box>
-                <QuestionContent>{question.content}</QuestionContent>
+            <Flex style={{ alignItems: "baseline" }}>
+                <QuestionContent>
+                    {index + 1}.&nbsp; {question.content}
+                </QuestionContent>
             </Flex>
             <Collapse in={isOpen}>{renderListChoice()}</Collapse>
         </QuestionWrapper>
