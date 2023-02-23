@@ -1,5 +1,5 @@
 import { Card } from "@/components";
-import { useNotify } from "@/hook/useNotify";
+import { useAppContext } from "@/hook/useAppContext";
 import { createQuiz } from "@/services/quiz.service";
 import { NotifyType } from "@/types/general";
 import { CreateQuizInput } from "@/types/quiz";
@@ -28,7 +28,7 @@ const CreateQuizView = (props: Props) => {
     const { goNextStep } = props;
 
     const { setQuiz } = useContext(QuizContext);
-    const notify = useNotify();
+    const { notify } = useAppContext();
     const {
         handleSubmit,
         register,

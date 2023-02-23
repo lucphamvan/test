@@ -1,5 +1,5 @@
 import { Card, Heading, QuestionForm } from "@/components";
-import { useNotify } from "@/hook/useNotify";
+import { useAppContext } from "@/hook/useAppContext";
 import { updateQuestion } from "@/services/question.service";
 import { insertQuestionToQuiz } from "@/services/quiz.service";
 import { NotifyType } from "@/types/general";
@@ -10,7 +10,7 @@ import { QuizContext } from "../..";
 
 const AddQuestionForm = () => {
     const { quiz, setQuestions, currentQuestion, resetRef } = useContext(QuizContext);
-    const notify = useNotify();
+    const { notify } = useAppContext();
     const title = currentQuestion.id ? "Update question" : "Add new question";
 
     // create | edit questions

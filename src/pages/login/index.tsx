@@ -1,6 +1,6 @@
 import TextFieldError from "@/components/text-field-error";
 import { ROUTE } from "@/config/route";
-import { useNotify } from "@/hook/useNotify";
+import { useAppContext } from "@/hook/useAppContext";
 import { useAppDispatch } from "@/redux/hook";
 import { fetchUserInfo } from "@/redux/slice/authen.slice";
 import { login } from "@/services/authen.service";
@@ -38,7 +38,7 @@ const schema = yup
 
 const LoginPage = () => {
     const dispatch = useAppDispatch();
-    const notify = useNotify();
+    const { notify } = useAppContext();
     const navigate = useNavigate();
 
     const {

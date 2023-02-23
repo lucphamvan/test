@@ -1,7 +1,7 @@
 import { TextFieldError, TooltipBody } from "@/components";
 import { DndContext, DragContext } from "@/components/dnd-context";
+import { useAppContext } from "@/hook/useAppContext";
 import { useDisclosure } from "@/hook/useDisclosure";
-import { useNotify } from "@/hook/useNotify";
 import { createQuestion } from "@/services/question.service";
 import { NotifyType } from "@/types/general";
 import { Choice, CreateQuestionInput } from "@/types/question";
@@ -54,7 +54,7 @@ interface Props {
 }
 
 const CreateQuestionButton = ({ refreshData }: Props) => {
-    const notify = useNotify();
+    const { notify } = useAppContext();
     const { isOpen, onClose, onToggle } = useDisclosure();
 
     // hook form

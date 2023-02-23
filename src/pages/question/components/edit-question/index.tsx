@@ -1,7 +1,7 @@
 import { TextFieldError, TooltipBody } from "@/components";
 import { DndContext, DragContext } from "@/components/dnd-context";
+import { useAppContext } from "@/hook/useAppContext";
 import { useDisclosure } from "@/hook/useDisclosure";
-import { useNotify } from "@/hook/useNotify";
 import { updateQuestion } from "@/services/question.service";
 import { NotifyType } from "@/types/general";
 import { Choice, Question, UpdateQuestionInput } from "@/types/question";
@@ -52,7 +52,7 @@ interface Props {
 
 const EditQuestion = ({ question, refreshData }: Props) => {
     // console.log(JSON.stringify(question, null, 4));
-    const notify = useNotify();
+    const { notify } = useAppContext();
     const { isOpen, onClose, onToggle } = useDisclosure();
     // set correct answer
     question.choices.forEach((i) => (i.isCorrect = question.correct_choice_ids.includes(i.id)));

@@ -1,4 +1,6 @@
 import { Notification } from "@/components";
+import { useNotification } from "@/hook/useNotification";
+import { useTheme } from "@/hook/useTheme";
 import { darkTheme, lightTheme } from "@/theme";
 import { NotifyType, ThemeMode } from "@/types/general";
 import { CssBaseline, ThemeProvider as MUIThemeProvider } from "@mui/material";
@@ -13,39 +15,8 @@ export const AppContext = createContext({
 });
 
 const AppProvider: FC<any> = ({ children }) => {
-    const [mode, setMode] = useState<ThemeMode>(ThemeMode.light);
-
-    const [notifyMessage, setNotifyMessage] = useState("");
-    const [notifyType, setNotifyType] = useState<NotifyType>();
-    const [showNotify, setShowNotify] = useState(false);
-
-    // state to handle global notify
-    const notify = useCallback((message: string, type: NotifyType) => {
-        setNotifyMessage(message);
-        setNotifyType(type);
-        setShowNotify(true);
-    }, []);
-
-    const hideNotify = () => setShowNotify(false);
-
-    const toggleTheme = () => {
-        setMode((mode) => {
-            if (mode === ThemeMode.dark) {
-                return ThemeMode.light;
-            } else {
-                return ThemeMode.dark;
-            }
-        });
-        document.body.classList.add(mode);
-    };
-
-    const theme = useMemo(() => {
-        if (mode === ThemeMode.dark) {
-            return darkTheme;
-        } else {
-            return lightTheme;
-        }
-    }, [mode]);
+    const { isShowNotify, hideNotify, notifyMessage, notifyType, notify } = useNotification();
+    const { mode, theme, toggleTheme } = useTheme();
 
     return (
         <AppContext.Provider value={{ mode, toggleTheme, notify }}>
@@ -60,7 +31,7 @@ const AppProvider: FC<any> = ({ children }) => {
                         hideNotify={hideNotify}
                         notifyMessage={notifyMessage}
                         notifyType={notifyType}
-                        showNotify={showNotify}
+                        showNotify={isShowNotify}
                     />
                 </MUIThemeProvider>
             </LocalizationProvider>

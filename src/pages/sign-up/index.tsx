@@ -1,5 +1,5 @@
 import TextFieldError from "@/components/text-field-error";
-import { useNotify } from "@/hook/useNotify";
+import { useAppContext } from "@/hook/useAppContext";
 import { checUserExisted, signUp } from "@/services/authen.service";
 import { NotifyType } from "@/types/general";
 import { CreateUserInput } from "@/types/user";
@@ -41,7 +41,7 @@ const schema = yup
     .required();
 
 const SignupDialog = () => {
-    const notify = useNotify();
+    const { notify } = useAppContext();
 
     const {
         register,

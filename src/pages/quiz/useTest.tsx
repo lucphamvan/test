@@ -1,4 +1,4 @@
-import { useNotify } from "@/hook/useNotify";
+import { useAppContext } from "@/hook/useAppContext";
 import { getQuizzes } from "@/services/quiz.service";
 import { NotifyType } from "@/types/general";
 import { Quiz } from "@/types/quiz";
@@ -8,7 +8,7 @@ import { useCallback, useEffect, useState } from "react";
 const LIMIT = 10;
 
 const useTest = () => {
-    const notify = useNotify();
+    const { notify } = useAppContext();
     const [loading, setLoading] = useState(false);
     const [tests, setTests] = useState<Quiz[]>([]);
     const [page, setPage] = useState(0);

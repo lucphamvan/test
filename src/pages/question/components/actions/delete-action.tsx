@@ -1,5 +1,5 @@
+import { useAppContext } from "@/hook/useAppContext";
 import { useDisclosure } from "@/hook/useDisclosure";
-import { useNotify } from "@/hook/useNotify";
 import { deleteQuestion } from "@/services/question.service";
 import { NotifyType } from "@/types/general";
 import { Question } from "@/types/question";
@@ -20,7 +20,7 @@ interface Props {
 }
 const DeleteAction = ({ question, refreshData }: Props) => {
     const { isOpen, onClose, onToggle } = useDisclosure();
-    const notify = useNotify();
+    const { notify } = useAppContext();
 
     const handleDelete = async () => {
         try {
