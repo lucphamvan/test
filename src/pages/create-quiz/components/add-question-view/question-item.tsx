@@ -39,7 +39,9 @@ const QuestionItem = React.memo(({ question, index }: QuestionItemProp) => {
         return <Stack gap="0.25rem">{list}</Stack>;
     };
 
-    const onExpand = useCallback(() => onToggle(), [onToggle]);
+    const onExpand = useCallback(() => {
+        onToggle();
+    }, [onToggle]);
 
     const onEdit = useCallback(() => {
         setCurrentQuestion(question);

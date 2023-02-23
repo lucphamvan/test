@@ -32,12 +32,14 @@ const schema = yup
     })
     .required();
 
+// interface props
 interface Props {
     question: Question;
     onSubmit: (value: any) => void;
     resetRef: React.MutableRefObject<any>;
 }
 
+// component
 const QuestionForm = (props: Props) => {
     const { question, onSubmit, resetRef } = props;
     question.choices.forEach((choice) => (choice.isCorrect = question.correct_choice_ids?.includes(choice.id)));

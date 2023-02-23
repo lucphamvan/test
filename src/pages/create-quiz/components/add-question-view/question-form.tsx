@@ -8,7 +8,7 @@ import { Stack } from "@mui/material";
 import { useContext } from "react";
 import { QuizContext } from "../..";
 
-const AddQuestion = () => {
+const AddQuestionForm = () => {
     const { quiz, setQuestions, currentQuestion, resetRef } = useContext(QuizContext);
     const notify = useNotify();
     const title = currentQuestion.id ? "Update question" : "Add new question";
@@ -52,4 +52,4 @@ const AddQuestion = () => {
     );
 };
 
-export default AddQuestion;
+export default AddQuestionForm;

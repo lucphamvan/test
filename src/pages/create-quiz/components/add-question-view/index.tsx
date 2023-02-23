@@ -1,10 +1,10 @@
 import { Flex } from "@/components";
 import { Button, Grid } from "@mui/material";
 import { Stack } from "@mui/system";
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useCallback, useContext, useEffect, useRef } from "react";
 import { QuizContext } from "../..";
 import { genQuestion } from "../../helper";
-import AddQuestion from "./add-question";
+import AddQuestionForm from "./question-form";
 import QuestionList from "./question-list";
 
 interface Props {
@@ -14,55 +14,55 @@ interface Props {
 
 const AddQuestionView = ({ goNextStep, goPreviousStep }: Props) => {
     const { setCurrentQuestion, resetRef } = useContext(QuizContext);
-    const ref = useRef<HTMLDivElement>(null);
+    const rightRef = useRef<HTMLDivElement>(null);
+    const leftRef = useRef<HTMLDivElement>(null);
 
     const onAddQuestionBtnClick = () => {
         setCurrentQuestion(genQuestion());
         resetRef.current && resetRef.current();
     };
 
-    useEffect(() => {
-        let offsetTop = ref.current?.getBoundingClientRect().top || 0;
-        let width = ref.current?.getBoundingClientRect().width || 0;
-        window.addEventListener("scroll", () => {
-            if (ref.current) {
-                const offsetLeft = ref.current.getBoundingClientRect().left;
-
-                if (window.scrollY > offsetTop && window.innerWidth > 900) {
-                    ref.current.style.position = "fixed";
-                    ref.current.style.top = "0px";
-                    ref.current.style.left = offsetLeft + "px";
-                    ref.current.style.paddingTop = "0px";
-                    ref.current.style.width = width + "px";
-                    return;
-                } else {
-                    ref.current.style.position = "static";
-                    ref.current.style.paddingTop = "1rem";
-                }
+    const handleRightGridPosition = useCallback(
+        (offsetTop: number) => {
+            if (!rightRef.current || !leftRef.current) return;
+            const bounding = leftRef.current.getBoundingClientRect();
+            const width = bounding.width || 0;
+            const offsetLeft = bounding.left + bounding.width || 0;
+            if (window.scrollY > offsetTop && window.innerWidth > 900) {
+                rightRef.current.style.position = "fixed";
+                rightRef.current.style.top = "50%";
+                rightRef.current.style.transform = "translateY(-50%)";
+                rightRef.current.style.left = offsetLeft + "px";
+                rightRef.current.style.width = width + "px";
+            } else {
+                rightRef.current.style.position = "static";
+                rightRef.current.style.transform = "translateY(0%)";
             }
+        },
+        [rightRef, leftRef]
+    );
+
+    useEffect(() => {
+        // the original distance between the top of the left and right grid
+        const offsetTop = leftRef.current?.getBoundingClientRect().top || 0;
+        window.addEventListener("scroll", () => {
+            handleRightGridPosition(offsetTop);
+        });
+        window.addEventListener("resize", () => {
+            handleRightGridPosition(offsetTop);
         });
         return () => {
             window.removeEventListener("scroll", () => {});
-        };
-    }, [ref]);
-
-    useEffect(() => {
-        window.addEventListener("resize", () => {
-            if (window.innerWidth < 900 && ref.current) {
-                ref.current.style.position = "static";
-            }
-        });
-        return () => {
             window.removeEventListener("resize", () => {});
         };
-    }, [ref]);
+    }, [rightRef, leftRef, handleRightGridPosition]);
 
     return (
         <Grid container spacing="1rem">
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={6} ref={leftRef}>
                 <QuestionList />
             </Grid>
-            <Grid item xs={12} md={6} ref={ref}>
+            <Grid item xs={12} md={6} ref={rightRef}>
                 <Stack gap="1rem">
                     <Button variant="contained" onClick={() => {}}>
                         Preview
@@ -78,7 +78,7 @@ const AddQuestionView = ({ goNextStep, goPreviousStep }: Props) => {
                     <Button variant="outlined" onClick={onAddQuestionBtnClick}>
                         Add question
                     </Button>
-                    <AddQuestion />
+                    <AddQuestionForm />
                 </Stack>
             </Grid>
         </Grid>

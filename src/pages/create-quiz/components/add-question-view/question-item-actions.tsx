@@ -6,7 +6,7 @@ import { IconButton } from "@mui/material";
 const Wrapper = styled(Flex)`
     gap: 0.5rem;
     position: absolute;
-    top: 0.75rem;
+    top: -0.75rem;
     right: 1rem;
     background-color: #f9ffff;
 `;
