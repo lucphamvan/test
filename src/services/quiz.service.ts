@@ -30,3 +30,13 @@ export const insertQuestionToQuiz = async (quizId: string, input: CreateQuestion
     const response = await axios.patch(API.INSERT_QUESTION_TO_QUIZ(quizId), input);
     return response.data as InsertQuestionResponse;
 };
+
+export const removeQuestionFromQuiz = async (quizId: string, questionId: string) => {
+    const response = await axios.delete(API.REMOVE_QUESTION_FROM_QUIZ(quizId, questionId));
+    return response.data as Question;
+};
+
+export const publishQuiz = async (quizId: string) => {
+    const response = await axios.patch(API.PUBLISH_QUIZ(quizId));
+    return response.data as Quiz;
+};

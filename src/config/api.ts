@@ -13,5 +13,8 @@ export const API = {
     // quizzes
     QUIZZES: "/quizzes",
     GET_QUIZ_QUESTIONS: (quizId: string) => `/quizzes/${quizId}/questions`,
-    INSERT_QUESTION_TO_QUIZ: (quizId: String) => `/quizzes/${quizId}/insert-question`
+    INSERT_QUESTION_TO_QUIZ: (quizId: string) => `/quizzes/${quizId}/insert-question`,
+    REMOVE_QUESTION_FROM_QUIZ: (quizId: string, questionId: string) =>
+        `/quizzes/${quizId}/remove-question/${questionId}`,
+    PUBLISH_QUIZ: (quizId: string) => `/quizzes/${quizId}/publish`
 };

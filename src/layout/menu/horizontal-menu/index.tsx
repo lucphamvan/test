@@ -59,8 +59,8 @@ const HorizontalMenu = () => {
                 <MenuItem to={"/" + ROUTE.QUIZ} end>
                     QUIZ
                 </MenuItem>
-                <MenuItem to={"/" + ROUTE.QUESTION} end>
-                    QUESTION
+                <MenuItem to={"/" + ROUTE.CREATE_QUIZ} end>
+                    CREATE QUIZ
                 </MenuItem>
                 <MenuItem to="/join-contest" end className="item-end">
                     CALENDAR

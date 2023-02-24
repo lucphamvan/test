@@ -7,7 +7,7 @@ const Breadcrumbs = () => {
         <MuiBreadCrumbs>
             <BreadcumbLink to="/">Home</BreadcumbLink>
             <BreadcumbLink to={"/" + ROUTE.QUIZ}>Quiz</BreadcumbLink>
-            <BreadcumbLink to={"/" + ROUTE.QUIZ_CREATE} color="#1A553C">
+            <BreadcumbLink to={"/" + ROUTE.CREATE_QUIZ} color="#1A553C">
                 Create
             </BreadcumbLink>
         </MuiBreadCrumbs>

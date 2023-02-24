@@ -15,8 +15,8 @@ export const menu: MenuItem[] = [
         link: "/quizzes"
     },
     {
-        text: "Question",
-        link: "/questions"
+        text: "Create Quiz",
+        link: "/create-quiz"
     },
     {
         text: "Calendar",

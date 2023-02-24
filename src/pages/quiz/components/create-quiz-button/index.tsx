@@ -1,3 +1,4 @@
+import { ROUTE } from "@/config/route";
 import { Add } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +7,7 @@ const CreateQuizButton = () => {
     const navigate = useNavigate();
 
     const gotoCreateQuiz = () => {
-        navigate("/quizzes/create");
+        navigate("/" + ROUTE.CREATE_QUIZ);
     };
 
     return (

@@ -14,8 +14,9 @@ const Wrapper = styled(Flex)`
 interface QuestionItemActionsProp {
     onExpand: () => void;
     onEdit: () => void;
+    onRemove: () => void;
 }
-const QuestionItemActions = ({ onExpand, onEdit }: QuestionItemActionsProp) => {
+const QuestionItemActions = ({ onExpand, onEdit, onRemove }: QuestionItemActionsProp) => {
     const handleExpand = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.stopPropagation();
         onExpand();
@@ -28,7 +29,7 @@ const QuestionItemActions = ({ onExpand, onEdit }: QuestionItemActionsProp) => {
 
     const handleDetele = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.stopPropagation();
-        onExpand();
+        onRemove();
     };
 
     return (

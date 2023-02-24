@@ -4,5 +4,5 @@ export enum ROUTE {
     SIGN_UP = "sign-up",
     QUESTION = "questions",
     QUIZ = "quizzes",
-    QUIZ_CREATE = "quizzes/create"
+    CREATE_QUIZ = "create-quiz"
 }

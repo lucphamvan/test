@@ -28,7 +28,7 @@ const Router = () => {
                 { path: ROUTE.SIGN_UP, element: <SignUpPage /> },
                 { path: ROUTE.QUESTION, element: <ProtectRoute children={<QuestionsPage />} /> },
                 { path: ROUTE.QUIZ, element: <ProtectRoute children={<TestPage />} /> },
-                { path: ROUTE.QUIZ_CREATE, element: <ProtectRoute children={<CreateQuizPage />} /> }
+                { path: ROUTE.CREATE_QUIZ, element: <ProtectRoute children={<CreateQuizPage />} /> }
             ]
         },
         {

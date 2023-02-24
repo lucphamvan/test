@@ -1,4 +1,5 @@
 import { Flex } from "@/components";
+import { useDisclosure } from "@/hook/useDisclosure";
 import { Button, Grid } from "@mui/material";
 import { Stack } from "@mui/system";
 import React, { useCallback, useContext, useEffect, useRef } from "react";
@@ -12,13 +13,17 @@ interface Props {
     goPreviousStep: () => void;
 }
 
-const AddQuestionView = ({ goNextStep, goPreviousStep }: Props) => {
+const AddQuestionStep = ({ goNextStep, goPreviousStep }: Props) => {
     const { setCurrentQuestion, resetRef } = useContext(QuizContext);
+    const { isOpen: isOpenQuestionForm, onOpen: onOpenQuestionForm, onClose: onCloseQuestionForm } = useDisclosure();
+
+    // refs
     const rightRef = useRef<HTMLDivElement>(null);
     const leftRef = useRef<HTMLDivElement>(null);
 
     const onAddQuestionBtnClick = () => {
         setCurrentQuestion(genQuestion());
+        onOpenQuestionForm();
         resetRef.current && resetRef.current();
     };
 
@@ -30,13 +35,15 @@ const AddQuestionView = ({ goNextStep, goPreviousStep }: Props) => {
             const offsetLeft = bounding.left + bounding.width || 0;
             if (window.scrollY > offsetTop && window.innerWidth > 900) {
                 rightRef.current.style.position = "fixed";
-                rightRef.current.style.top = "50%";
-                rightRef.current.style.transform = "translateY(-50%)";
+                rightRef.current.style.top = "0%";
+                // rightRef.current.style.transform = "translateY(-50%)";
                 rightRef.current.style.left = offsetLeft + "px";
                 rightRef.current.style.width = width + "px";
+                rightRef.current.style.transition = "top 2s ease";
             } else {
                 rightRef.current.style.position = "static";
-                rightRef.current.style.transform = "translateY(0%)";
+                // rightRef.current.style.transform = "translateY(0%)";
+                rightRef.current.style.transition = "top 2s ease";
             }
         },
         [rightRef, leftRef]
@@ -60,9 +67,9 @@ const AddQuestionView = ({ goNextStep, goPreviousStep }: Props) => {
     return (
         <Grid container spacing="1rem">
             <Grid item xs={12} md={6} ref={leftRef}>
-                <QuestionList />
+                <QuestionList onOpenQuestionForm={onOpenQuestionForm} />
             </Grid>
-            <Grid item xs={12} md={6} ref={rightRef}>
+            <Grid item xs={12} md={6} ref={rightRef} sx={{ top: 0 }}>
                 <Stack gap="1rem">
                     <Button variant="contained" onClick={() => {}}>
                         Preview
@@ -78,11 +85,11 @@ const AddQuestionView = ({ goNextStep, goPreviousStep }: Props) => {
                     <Button variant="outlined" onClick={onAddQuestionBtnClick}>
                         Add question
                     </Button>
-                    <AddQuestionForm />
+                    {isOpenQuestionForm && <AddQuestionForm onCloseQuestionForm={onCloseQuestionForm} />}
                 </Stack>
             </Grid>
         </Grid>
     );
 };
 
-export default React.memo(AddQuestionView);
+export default React.memo(AddQuestionStep);

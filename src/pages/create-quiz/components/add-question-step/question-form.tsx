@@ -8,7 +8,10 @@ import { Stack } from "@mui/material";
 import { useContext } from "react";
 import { QuizContext } from "../..";
 
-const AddQuestionForm = () => {
+interface Props {
+    onCloseQuestionForm: () => void;
+}
+const AddQuestionForm = ({ onCloseQuestionForm }: Props) => {
     const { quiz, setQuestions, currentQuestion, resetRef } = useContext(QuizContext);
     const { notify } = useAppContext();
     const title = currentQuestion.id ? "Update question" : "Add new question";
@@ -20,25 +23,33 @@ const AddQuestionForm = () => {
         // case 1 : insert new question to quiz
         if (!currentQuestion?.id) {
             const result = await insertQuestionToQuiz(quiz!.id, value);
+            // update questions in state
             setQuestions((questions) => {
                 const clone = structuredClone(questions) as Question[];
                 clone.push(result.question);
                 return clone;
             });
+            window.scrollTo({ top: document.body.scrollHeight, left: 0, behavior: "smooth" });
+            onCloseQuestionForm();
             notify("Insert question successfull", NotifyType.success);
             return;
         }
 
         // case 2: update question
         await updateQuestion(currentQuestion.id, value);
+        // update questions in state
         setQuestions((questions) => {
             const _questions = structuredClone(questions) as Question[];
             const index = _questions.findIndex((q) => q.id === currentQuestion.id);
+            if (index === -1) {
+                return _questions;
+            }
             _questions[index].content = value.content;
             _questions[index].choices = value.choices;
             _questions[index].correct_choice_ids = value.correct_choice_ids;
             return _questions;
         });
+        onCloseQuestionForm();
         notify("Update question successfull", NotifyType.success);
     };
 

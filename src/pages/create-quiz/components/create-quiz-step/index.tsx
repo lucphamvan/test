@@ -24,7 +24,7 @@ const schema = yup.object().shape({
 interface Props {
     goNextStep: () => void;
 }
-const CreateQuizView = (props: Props) => {
+const CreateQuizStep = (props: Props) => {
     const { goNextStep } = props;
 
     const { setQuiz } = useContext(QuizContext);
@@ -167,4 +167,4 @@ const CreateQuizView = (props: Props) => {
     );
 };
 
-export default React.memo(CreateQuizView);
+export default React.memo(CreateQuizStep);
