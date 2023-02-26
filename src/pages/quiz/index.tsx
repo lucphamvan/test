@@ -1,12 +1,11 @@
-import { BreadcumbLink, Card, Flex } from "@/components";
-import { Breadcrumbs, CircularProgress, Pagination, Stack } from "@mui/material";
-import DataTable from "react-data-table-component";
-import { columns } from "./column";
+import { BreadcumbLink, Flex } from "@/components";
+import { Breadcrumbs, Grid, Pagination, Stack } from "@mui/material";
 import CreateQuizButton from "./components/create-quiz-button";
-import useTest from "./useTest";
+import QuizItem from "./quiz-item";
+import useQuiz from "./useQuiz";
 
-const TestPage = () => {
-    const { tests, loading, refetchData, handlePageChange, pageCount } = useTest();
+const QuizPage = () => {
+    const { quizzes, handlePageChange, pageCount } = useQuiz();
     return (
         <Stack gap="1rem">
             <Breadcrumbs>
@@ -18,19 +17,16 @@ const TestPage = () => {
             <Stack flexDirection="row" justifyContent="flex-end">
                 <CreateQuizButton />
             </Stack>
-            <Card>
-                <DataTable
-                    columns={columns(refetchData)}
-                    data={tests}
-                    progressPending={loading}
-                    progressComponent={<CircularProgress style={{ marginTop: "1rem" }} />}
-                />
-                <Flex py="0.5rem" justifyContent="end">
-                    <Pagination count={pageCount} onChange={handlePageChange} />
-                </Flex>
-            </Card>
+            <Grid container spacing="2rem">
+                {quizzes.map((quiz) => {
+                    return <QuizItem quiz={quiz} key={quiz.id} />;
+                })}
+            </Grid>
+            {/* <Flex py="0.5rem" justifyContent="end">
+                <Pagination count={pageCount} onChange={handlePageChange} />
+            </Flex> */}
         </Stack>
     );
 };
 
-export default TestPage;
+export default QuizPage;

@@ -7,10 +7,10 @@ import { useCallback, useEffect, useState } from "react";
 
 const LIMIT = 10;
 
-const useTest = () => {
+const useQuiz = () => {
     const { notify } = useAppContext();
     const [loading, setLoading] = useState(false);
-    const [tests, setTests] = useState<Quiz[]>([]);
+    const [quizzes, setQuizzes] = useState<Quiz[]>([]);
     const [page, setPage] = useState(0);
     const [pageCount, setPageCount] = useState(0);
     const [refresh, setRefresh] = useState(false);
@@ -21,7 +21,7 @@ const useTest = () => {
             try {
                 setLoading(true);
                 const response = await getQuizzes(limit, offset);
-                setTests(response.items);
+                setQuizzes(response.items);
                 setPageCount(totalPage(response.total, limit));
             } catch (err: any) {
                 notify("Failed to get list tests : " + err.message, NotifyType.error);
@@ -48,7 +48,7 @@ const useTest = () => {
         getListTests(LIMIT, page);
     }, [page, getListTests, refresh]);
 
-    return { loading, tests, pageCount, refetchData, handlePageChange };
+    return { loading, quizzes, pageCount, refetchData, handlePageChange };
 };
 
-export default useTest;
+export default useQuiz;

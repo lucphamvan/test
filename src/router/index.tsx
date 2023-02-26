@@ -15,7 +15,7 @@ const SignUpPage = React.lazy(() => import("@/pages/sign-up"));
 const QuestionsPage = React.lazy(() => import("@/pages/question"));
 const TestPage = React.lazy(() => import("@/pages/quiz"));
 const CreateQuizPage = React.lazy(() => import("@/pages/create-quiz"));
-
+const DetailQuizPage = React.lazy(() => import("@/pages/detail-quiz"));
 const Router = () => {
     const router = createBrowserRouter([
         {
@@ -28,7 +28,8 @@ const Router = () => {
                 { path: ROUTE.SIGN_UP, element: <SignUpPage /> },
                 { path: ROUTE.QUESTION, element: <ProtectRoute children={<QuestionsPage />} /> },
                 { path: ROUTE.QUIZ, element: <ProtectRoute children={<TestPage />} /> },
-                { path: ROUTE.CREATE_QUIZ, element: <ProtectRoute children={<CreateQuizPage />} /> }
+                { path: ROUTE.CREATE_QUIZ, element: <ProtectRoute children={<CreateQuizPage />} /> },
+                { path: ROUTE.DETAIL_QUIZ + "/:id", element: <ProtectRoute children={<DetailQuizPage />} /> }
             ]
         },
         {

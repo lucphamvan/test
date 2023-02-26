@@ -27,7 +27,7 @@ export const columns = (refreshData: any): TableColumn<Quiz>[] => [
     },
     {
         name: "Published",
-        selector: (row) => (row.is_publish ? "Yes" : "No")
+        selector: (row) => (row.published ? "Yes" : "No")
     },
     {
         name: "Actions",

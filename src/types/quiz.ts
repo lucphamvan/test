@@ -4,7 +4,7 @@ export interface Quiz {
     id: string;
     setting: QuizSetting;
     code: string;
-    is_publish: boolean;
+    published: boolean;
     question_ids: string[];
     created_at: number;
 }
