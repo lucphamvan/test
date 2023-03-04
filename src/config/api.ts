@@ -16,5 +16,6 @@ export const API = {
     INSERT_QUESTION_TO_QUIZ: (quizId: string) => `/quizzes/${quizId}/insert-question`,
     REMOVE_QUESTION_FROM_QUIZ: (quizId: string, questionId: string) =>
         `/quizzes/${quizId}/remove-question/${questionId}`,
-    PUBLISH_QUIZ: (quizId: string) => `/quizzes/${quizId}/publish`
+    PUBLISH_QUIZ: (quizId: string) => `/quizzes/${quizId}/publish`,
+    UPDATE_QUIZ_SETTING: (quizId: string) => `/quizzes/${quizId}/update-setting`
 };

@@ -1,4 +1,4 @@
-import { Card } from "@/components";
+import { Card, Heading } from "@/components";
 import { useAppContext } from "@/hook/useAppContext";
 import { createQuiz } from "@/services/quiz.service";
 import { NotifyType } from "@/types/general";
@@ -102,9 +102,7 @@ const CreateQuizStep = (props: Props) => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Stack gap="1rem">
                     <Box mb="1rem">
-                        <Typography variant="body1" fontWeight="600">
-                            Create Quiz
-                        </Typography>
+                        <Heading>Create Quiz</Heading>
                         <Typography variant="body2">Setup quiz information</Typography>
                     </Box>
                     <Grid container spacing="1rem">
@@ -123,7 +121,7 @@ const CreateQuizStep = (props: Props) => {
                                 type="number"
                                 defaultValue={0}
                                 {...register("setting.duration")}
-                                label="Duration (second) *"
+                                label="Duration (minute) *"
                                 error={!!(errors?.setting as any)?.duration}
                                 helperText={(errors?.setting as any)?.duration?.message}
                             />

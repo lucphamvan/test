@@ -1,0 +1,27 @@
+// delcare color variables
+$color-primary: #357e51;
+$color-secondary: #87c59f;
+$color-error: #e74c3c;
+$color-warning: #f1c40f;
+$color-info: #3498db;
+$color-success: #2ecc71;
+$color-light: #ecf0f1;
+$color-dark: #2c3e50;
+$color-white: #ffffff;
+$color-black: #000000;
+$color-gray: #bdc3c7;
+$color-gray-dark: #95a5a6;
+$color-gray-light: #ecf0f1;
+$color-gray-lighter: #f9f9f9;
+$color-gray-lightest: #f4f4f4;
+$color-gray-dark: #7f8c8d;
+$color-gray-darker: #34495e;
+$color-gray-darkest: #2c3e50;
+
+.color-danger {
+    color: $color-error !important;
+}
+
+.bg-danger {
+    background-color: $color-error !important;
+}

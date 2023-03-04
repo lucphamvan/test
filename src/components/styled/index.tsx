@@ -27,7 +27,7 @@ export const SmallButton = styled(Button)`
 
 export const BreadcumbLink = styled(NavLink)`
     color: ${(props) => (props.color ? props.color : "inherit")};
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     font-weight: 500;
     font-family: "Oswald", sans-serif;
     text-decoration: none;

@@ -13,9 +13,7 @@ import {
     DialogContent,
     DialogTitle,
     Divider,
-    Stack,
-    Typography
-} from "@mui/material";
+    Stack} from "@mui/material";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { QuizContext } from "../..";
