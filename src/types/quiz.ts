@@ -22,10 +22,6 @@ export interface GetQuizzesResponse {
     total: number;
 }
 
-export interface CreateQuizInput {
-    setting: QuizSetting;
-}
-
 export interface InsertQuestionResponse {
     quiz: Quiz;
     question: Question;

@@ -6,6 +6,9 @@ html {
 .title-font {
     font-family: "Oswald", sans-serif !important;
 }
+.w-120 {
+    width: 120px !important;
+}
 
 @mixin shadow-text {
     font-weight: 700;

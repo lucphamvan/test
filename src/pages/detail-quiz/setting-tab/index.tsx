@@ -1,15 +1,13 @@
-import { Quiz } from "@/types/quiz";
 import { Stack } from "@mui/material";
-import InviteZone from "./invite-zone";
+import { useContext } from "react";
+import { QuizContext } from "..";
 import DeleteZone from "./delete-zone";
 import GeneralSetting from "./general-setting";
+import InviteZone from "./invite-zone";
 import PublishZone from "./publish-zone";
 
-interface Props {
-    quiz: Quiz;
-    setQuiz: React.Dispatch<React.SetStateAction<Quiz | undefined>>;
-}
-const SettingTab = ({ quiz, setQuiz }: Props) => {
+const SettingTab = () => {
+    const { quiz, setQuiz } = useContext(QuizContext);
     return (
         <Stack gap="2rem">
             <GeneralSetting quiz={quiz} setQuiz={setQuiz} />

@@ -27,13 +27,15 @@ export const QuizCard = styled(Card)`
 
 export const Badge = styled(Box)`
     padding: 0.25rem 0.75rem;
-    border-radius: 3px;
+    border-radius: 2px;
     background-image: linear-gradient(315deg, #58ca75 0%, #2a8b5b 74%);
     color: #fff;
-    font-size: 0.8rem;
-    font-weight: 500;
-    text-transform: capitalize;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
     position: absolute;
     top: 0.25rem;
-    right: 0.5rem;
+    right: 0;
 `;

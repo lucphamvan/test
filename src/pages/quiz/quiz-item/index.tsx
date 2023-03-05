@@ -28,7 +28,7 @@ const QuizItem = ({ quiz }: QuizItemProps) => {
                     <Box>Duration: {quiz.setting.duration} minute</Box>
                     <Box>Start time: {getTime(quiz.setting.start_time)}</Box>
                     <Box>End time: {getTime(quiz.setting.end_time)}</Box>
-                    <Badge>{quiz.published ? "Published" : "Non published"}</Badge>
+                    {quiz.published && <Badge>Published</Badge>}
                 </Stack>
             </QuizCard>
         </Grid>

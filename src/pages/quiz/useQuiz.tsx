@@ -16,7 +16,7 @@ const useQuiz = () => {
     const [refresh, setRefresh] = useState(false);
 
     // get list test
-    const getListTests = useCallback(
+    const fetchQuizzes = useCallback(
         async (limit: number, offset: number) => {
             try {
                 setLoading(true);
@@ -45,8 +45,8 @@ const useQuiz = () => {
 
     //
     useEffect(() => {
-        getListTests(LIMIT, page);
-    }, [page, getListTests, refresh]);
+        fetchQuizzes(LIMIT, page);
+    }, [page, fetchQuizzes, refresh]);
 
     return { loading, quizzes, pageCount, refetchData, handlePageChange };
 };

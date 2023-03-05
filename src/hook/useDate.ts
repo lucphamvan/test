@@ -1,7 +1,7 @@
 import moment, { Moment } from "moment";
 import { useMemo, useState } from "react";
 
-export const useDate = (startTime: number, endTime: number) => {
+export const useDate = (startTime?: number, endTime?: number) => {
     const [startDate, setStartDate] = useState<Moment | null>(moment(startTime));
     const [endDate, setEndDate] = useState<Moment | null>(moment(endTime));
 

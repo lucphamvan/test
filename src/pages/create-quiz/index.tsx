@@ -15,7 +15,7 @@ interface QuizContextProp {
     quiz: Quiz | undefined;
     questions: Question[];
     setQuestions: React.Dispatch<React.SetStateAction<Question[]>>;
-    setQuiz: React.Dispatch<React.SetStateAction<Quiz>>;
+    setQuiz: React.Dispatch<React.SetStateAction<Quiz | undefined>>;
     currentQuestion: Question;
     setCurrentQuestion: React.Dispatch<React.SetStateAction<Question>>;
     resetRef: React.MutableRefObject<any>;
@@ -24,7 +24,7 @@ interface QuizContextProp {
 export const QuizContext = React.createContext<QuizContextProp>({} as any);
 const CreateQuizPage = () => {
     const [activeStep, setActiveStep] = useState(0);
-    const [quiz, setQuiz] = useState<Quiz>({} as Quiz);
+    const [quiz, setQuiz] = useState<Quiz>();
     const [questions, setQuestions] = useState<Question[]>([]);
     const [currentQuestion, setCurrentQuestion] = useState<Question>(genQuestion());
     const resetRef = useRef<any>();

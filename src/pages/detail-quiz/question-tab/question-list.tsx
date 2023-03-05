@@ -5,7 +5,9 @@ import { getQuestionsOfQuiz, removeQuestionFromQuiz } from "@/services/quiz.serv
 import { NotifyType } from "@/types/general";
 import { Stack } from "@mui/material";
 import { useCallback, useContext, useEffect, useState } from "react";
-import { QuizContext } from "../..";
+import { useParams } from "react-router-dom";
+import { QuizContext } from "..";
+
 import QuestionItem from "./question-item";
 import RemoveDialog from "./remove-dialog";
 
@@ -14,16 +16,17 @@ interface Props {
 }
 const QuestionList = ({ onOpenQuestionForm }: Props) => {
     const { notify } = useAppContext();
-    const { quiz, questions, setQuestions } = useContext(QuizContext);
+    const { questions, setQuestions } = useContext(QuizContext);
     const { isOpen, onClose, onToggle, onOpen } = useDisclosure(); // state of remove dialog
     const [removeQuestionId, setRemoveQuestionId] = useState<string>(); // id of question will be removed
+    const param = useParams<{ id: string }>();
 
     // get list question of quiz
     useEffect(() => {
         // get list question of quiz
         const getQuestions = async () => {
             try {
-                const _questions = await getQuestionsOfQuiz(quiz?.id);
+                const _questions = await getQuestionsOfQuiz(param.id);
                 if (_questions?.length) {
                     setQuestions(_questions);
                 }
@@ -32,7 +35,7 @@ const QuestionList = ({ onOpenQuestionForm }: Props) => {
             }
         };
         getQuestions();
-    }, [quiz?.id, setQuestions]);
+    }, [param.id, setQuestions]);
 
     // render list question
     const renderQuestions = useCallback(() => {
@@ -50,11 +53,11 @@ const QuestionList = ({ onOpenQuestionForm }: Props) => {
 
     // handle remove question
     const onAcceptRemove = useCallback(async () => {
-        if (!quiz?.id || !removeQuestionId) return;
+        if (!param.id || !removeQuestionId) return;
         // remove question from quiz
         try {
             // call api to remove question from quiz
-            await removeQuestionFromQuiz(quiz.id, removeQuestionId);
+            await removeQuestionFromQuiz(param.id, removeQuestionId);
             // remove question from state
             setQuestions((prevQuestions) => {
                 const _questions = prevQuestions.filter((q) => q.id !== removeQuestionId);
@@ -67,12 +70,12 @@ const QuestionList = ({ onOpenQuestionForm }: Props) => {
             notify("Failed to remove question : " + err.message, NotifyType.error);
             console.error("'removeQuestionFromQuiz' : ", err);
         }
-    }, [onToggle, removeQuestionId, setQuestions, notify, quiz?.id]);
+    }, [onToggle, removeQuestionId, setQuestions, notify, param.id]);
 
     return (
         <Card p="2rem">
             <Stack gap="1rem">
-                <Heading>{quiz?.setting.name}</Heading>
+                <Heading>Questions</Heading>
                 <Stack gap="1rem">{renderQuestions()}</Stack>
                 <RemoveDialog isOpen={isOpen} onAccept={onAcceptRemove} onClose={onClose} />
             </Stack>

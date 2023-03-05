@@ -13,7 +13,8 @@ import {
     DialogContent,
     DialogTitle,
     Divider,
-    Stack} from "@mui/material";
+    Stack
+} from "@mui/material";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { QuizContext } from "../..";
@@ -62,7 +63,7 @@ const PublishStep = ({ goNextStep, goPreviousStep }: Props) => {
 
                 {/* button */}
                 <Flex gap="1rem">
-                    <Button sx={{ flexGrow: 1 }} variant="outlined" size="large">
+                    <Button sx={{ flexGrow: 1 }} variant="outlined" size="large" onClick={goPreviousStep}>
                         Back
                     </Button>
                     <Button sx={{ flexGrow: 1 }} variant="outlined" size="large" onClick={onToggle}>

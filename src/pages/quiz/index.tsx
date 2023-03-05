@@ -23,9 +23,9 @@ const QuizPage = () => {
                     return <QuizItem quiz={quiz} key={quiz.id} />;
                 })}
             </Grid>
-            {/* <Flex py="0.5rem" justifyContent="end">
+            <Flex py="0.5rem" justifyContent="end">
                 <Pagination count={pageCount} onChange={handlePageChange} />
-            </Flex> */}
+            </Flex>
         </Stack>
     );
 };

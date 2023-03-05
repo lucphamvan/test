@@ -1,7 +1,7 @@
 import { API } from "@/config/api";
 import axios from "@/config/http";
 import { CreateQuestionInput, Question } from "@/types/question";
-import { CreateQuizInput, GetQuizzesResponse, InsertQuestionResponse, Quiz, QuizSetting } from "@/types/quiz";
+import { GetQuizzesResponse, InsertQuestionResponse, Quiz, QuizSetting } from "@/types/quiz";
 
 export const getQuizzes = async (limit: number, offset: number) => {
     const response = await axios.get(API.QUIZZES, {
@@ -13,7 +13,7 @@ export const getQuizzes = async (limit: number, offset: number) => {
     return response.data as GetQuizzesResponse;
 };
 
-export const createQuiz = async (input: CreateQuizInput) => {
+export const createQuiz = async (input: QuizSetting) => {
     const response = await axios.post(API.QUIZZES, input);
     return response.data as Quiz;
 };
