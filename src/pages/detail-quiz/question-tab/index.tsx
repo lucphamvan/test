@@ -39,7 +39,7 @@ const QuestionTab = () => {
             } else {
                 rightRef.current.style.position = "static";
                 // rightRef.current.style.transform = "translateY(0%)";
-                rightRef.current.style.transition = "top 2s ease";
+                // rightRef.current.style.transition = "top 2s ease";
             }
         },
         [rightRef, leftRef]

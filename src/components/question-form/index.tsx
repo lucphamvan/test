@@ -5,6 +5,8 @@ import { useEffect } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 
 import { Flex, TextFieldError } from "@/components";
+import { useAppContext } from "@/hook/useAppContext";
+import { NotifyType } from "@/types/general";
 import { Add, Create } from "@mui/icons-material";
 import uuid from "bson-objectid";
 import * as yup from "yup";
@@ -42,6 +44,7 @@ interface Props {
 // component
 const QuestionForm = (props: Props) => {
     const { question, onSubmit, resetRef } = props;
+    const { notify } = useAppContext();
     question.choices.forEach((choice) => (choice.isCorrect = question.correct_choice_ids?.includes(choice.id)));
     const btnText = question.id ? "Update" : "Create";
 
@@ -70,6 +73,10 @@ const QuestionForm = (props: Props) => {
 
     // handle add answer
     const handleAddAnswer = () => {
+        if (fieldArray.fields.length >= 5) {
+            notify("You can only add up to 5 answers", NotifyType.warning);
+            return;
+        }
         const option: Choice = { id: uuid().toHexString(), content: "", isCorrect: false };
         fieldArray.append(option);
     };

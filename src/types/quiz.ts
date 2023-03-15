@@ -26,3 +26,12 @@ export interface InsertQuestionResponse {
     quiz: Quiz;
     question: Question;
 }
+
+export interface EmailData {
+    email: string;
+    name: string;
+}
+
+export interface InviteMailRequest {
+    data: EmailData[];
+}

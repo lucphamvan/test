@@ -17,5 +17,6 @@ export const API = {
     REMOVE_QUESTION_FROM_QUIZ: (quizId: string, questionId: string) =>
         `/quizzes/${quizId}/remove-question/${questionId}`,
     PUBLISH_QUIZ: (quizId: string) => `/quizzes/${quizId}/publish`,
-    UPDATE_QUIZ_SETTING: (quizId: string) => `/quizzes/${quizId}/update-setting`
+    UPDATE_QUIZ_SETTING: (quizId: string) => `/quizzes/${quizId}/update-setting`,
+    INVITE_EMAIL: (quizId: string) => `/quizzes/${quizId}/invite-email`
 };
