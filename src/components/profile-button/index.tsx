@@ -48,6 +48,7 @@ const ProfileButton = () => {
         localStorage.removeItem(REFRESH_TOKEN_KEY);
         dispatch(clearSession());
         onMenuClose();
+        navigate("/");
     };
 
     if (!isAuthen) {

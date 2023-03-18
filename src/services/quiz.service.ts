@@ -1,7 +1,14 @@
 import { API } from "@/config/api";
 import axios from "@/config/http";
 import { CreateQuestionInput, Question } from "@/types/question";
-import { GetQuizzesResponse, InsertQuestionResponse, InviteMailRequest, Quiz, QuizSetting } from "@/types/quiz";
+import {
+    GetQuizzesResponse,
+    InsertQuestionResponse,
+    InvitedEmail,
+    InviteMailRequest,
+    Quiz,
+    QuizSetting
+} from "@/types/quiz";
 
 export const getQuizzes = async (limit: number, offset: number) => {
     const response = await axios.get(API.QUIZZES, {
@@ -59,4 +66,13 @@ export const deleteQuiz = async (quizId: string) => {
 export const inviteEmail = async (quizId: string, data: InviteMailRequest) => {
     const response = await axios.post(API.INVITE_EMAIL(quizId), data);
     return response.data as Quiz;
+};
+
+export const getInvitedEmails = async (quizId: string) => {
+    const response = await axios.get(API.INVITED_EMAILS(quizId));
+    return response.data as InvitedEmail[];
+};
+
+export const removeInvitedEmail = async (quizId: string, emailId: string) => {
+    return axios.delete(API.REMOVE_INVITED_EMAIL(quizId, emailId));
 };

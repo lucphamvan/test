@@ -35,3 +35,10 @@ export interface EmailData {
 export interface InviteMailRequest {
     data: EmailData[];
 }
+
+export interface InvitedEmail {
+    email: string;
+    name: string;
+    quiz_id: string;
+    id: string;
+}

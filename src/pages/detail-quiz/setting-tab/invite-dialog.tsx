@@ -1,11 +1,21 @@
-import { Flex, Heading } from "@/components";
+import { Flex, Heading, TooltipBody } from "@/components";
 import { useAppContext } from "@/hook/useAppContext";
 import { inviteEmail } from "@/services/quiz.service";
 import { NotifyType } from "@/types/general";
 import { Quiz } from "@/types/quiz";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Delete, PlaylistAdd, Send } from "@mui/icons-material";
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Stack, TextField } from "@mui/material";
+import {
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    IconButton,
+    Stack,
+    TextField,
+    Tooltip
+} from "@mui/material";
 import { useCallback, useEffect } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -26,9 +36,10 @@ interface Props {
     isOpen: boolean;
     onClose: () => void;
     quiz: Quiz;
+    onTriggerRefetch: () => void;
 }
 // remove dialog component
-const InviteDialog = ({ isOpen, onClose, quiz }: Props) => {
+const InviteDialog = ({ isOpen, onClose, quiz, onTriggerRefetch }: Props) => {
     // react hook form
     const {
         register,
@@ -103,6 +114,7 @@ const InviteDialog = ({ isOpen, onClose, quiz }: Props) => {
             await inviteEmail(quiz.id, data);
             onClose();
             notify("Invite successfully", NotifyType.success);
+            onTriggerRefetch();
         } catch (error: any) {
             notify(error.message, NotifyType.error);
         }
@@ -111,17 +123,19 @@ const InviteDialog = ({ isOpen, onClose, quiz }: Props) => {
     return (
         <Dialog open={isOpen} onClose={onClose} fullWidth>
             <DialogTitle sx={{ pb: "5px" }}>
-                <Heading style={{ fontSize: 20 }}>Invite Form</Heading>
+                <Heading style={{ fontSize: 20 }}>Invite user to join the quiz</Heading>
             </DialogTitle>{" "}
-            <DialogContent style={{ paddingTop: 10 }}>
+            <DialogContent style={{ paddingTop: 10, height: "100vh" }}>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <Stack gap="1rem">{renderFields()}</Stack>
                 </form>
             </DialogContent>
             <DialogActions sx={{ display: "flex", justifyContent: "space-between", px: "1.75rem" }}>
-                <IconButton onClick={handleAddMore} color="primary">
-                    <PlaylistAdd />
-                </IconButton>
+                <Tooltip placement="top" arrow title={<TooltipBody>Add more</TooltipBody>}>
+                    <IconButton onClick={handleAddMore} color="primary">
+                        <PlaylistAdd />
+                    </IconButton>
+                </Tooltip>
 
                 <Button
                     variant="outlined"
