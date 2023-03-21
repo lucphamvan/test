@@ -73,7 +73,7 @@ const QuestionList = ({ onOpenQuestionForm }: Props) => {
     }, [onToggle, removeQuestionId, setQuestions, notify, param.id]);
 
     return (
-        <Card p="2rem">
+        <Card p="1rem 2rem">
             <Stack gap="1rem">
                 <Heading>Questions</Heading>
                 <Stack gap="1rem">{renderQuestions()}</Stack>

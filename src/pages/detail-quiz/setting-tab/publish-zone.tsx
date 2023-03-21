@@ -15,6 +15,13 @@ const PublishZone = ({ quiz, setQuiz }: Props) => {
     const { notify } = useAppContext();
 
     const handlePublish = async () => {
+        // prevent publish if quiz has no question
+        // if (!questions?.length) {
+        //     notify("Add at least one question for the quiz under the 'Questions' tab.", NotifyType.error);
+        //     return;
+        // }
+
+        // try to publish quiz
         try {
             await publishQuiz(quiz?.id);
             setQuiz({ ...quiz, published: true });

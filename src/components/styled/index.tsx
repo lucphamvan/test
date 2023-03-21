@@ -9,8 +9,8 @@ export const Flex = styled(Stack)`
 
 export const TooltipBody = styled(Box)`
     font-size: 11px;
-    font-weight: 300;
-    border-radius: 0px !important;
+    font-weight: 400;
+    border-radius: 4px;
 `;
 
 export const SmallButton = styled(Button)`
