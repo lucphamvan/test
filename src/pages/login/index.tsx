@@ -57,7 +57,7 @@ const LoginPage = () => {
             notify(`Welcome to Hola App`, NotifyType.success);
             navigate("/" + ROUTE.HOME);
         } catch (error: any) {
-            console.log("failed to login", error.message);
+            console.log("failed to login", error);
             notify(`Failed to login : ${error.message}`, NotifyType.error);
         }
     };

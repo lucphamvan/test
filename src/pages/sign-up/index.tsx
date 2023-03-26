@@ -63,7 +63,7 @@ const SignupDialog = () => {
             await signUp(data);
             notify("Create user successfull", NotifyType.success);
         } catch (error: any) {
-            console.log("Failed to create user", error.message);
+            console.log("Failed to create user", error);
             notify("Failed to create user. Re-check or try again later", NotifyType.error);
         }
     };

@@ -1,5 +1,6 @@
 import { ROUTE } from "@/config/route";
-import Layout from "@/layout";
+import { AuthLayout, UnauthLayout } from "@/layout";
+
 import ErrorPage from "@/pages/error";
 import LoginPage from "@/pages/login";
 import NotFoundPage from "@/pages/not-found";
@@ -16,11 +17,13 @@ const QuestionsPage = React.lazy(() => import("@/pages/question"));
 const TestPage = React.lazy(() => import("@/pages/quiz"));
 const CreateQuizPage = React.lazy(() => import("@/pages/create-quiz"));
 const DetailQuizPage = React.lazy(() => import("@/pages/detail-quiz"));
+const DoquizPage = React.lazy(() => import("@/pages/do-quiz"));
+
 const Router = () => {
     const router = createBrowserRouter([
         {
             path: "/",
-            element: <Layout />,
+            element: <AuthLayout />,
             errorElement: <ErrorPage />,
             children: [
                 { path: ROUTE.HOME, element: <HomePage /> }, //<ProtectRoute children={<HomePage />} /> },
@@ -31,6 +34,12 @@ const Router = () => {
                 { path: ROUTE.CREATE_QUIZ, element: <ProtectRoute children={<CreateQuizPage />} /> },
                 { path: ROUTE.DETAIL_QUIZ + "/:id", element: <ProtectRoute children={<DetailQuizPage />} /> }
             ]
+        },
+        {
+            path: "/",
+            element: <UnauthLayout />,
+            errorElement: <ErrorPage />,
+            children: [{ path: ROUTE.DO_QUIZ + "/:code", element: <DoquizPage /> }]
         },
         {
             path: "*",

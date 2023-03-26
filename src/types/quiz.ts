@@ -27,13 +27,13 @@ export interface InsertQuestionResponse {
     question: Question;
 }
 
-export interface EmailData {
+export interface InvitedData {
     email: string;
     name: string;
 }
 
 export interface InviteMailRequest {
-    data: EmailData[];
+    data: InvitedData[];
 }
 
 export interface InvitedEmail {
@@ -41,4 +41,11 @@ export interface InvitedEmail {
     name: string;
     quiz_id: string;
     id: string;
+}
+
+export interface QuizAnswerInfo {
+    quiz_id: string;
+    quiz_setting: QuizSetting;
+    email: string;
+    name: string;
 }

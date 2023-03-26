@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
-import { Alert, Box, Button, Stack } from "@mui/material";
+import { Alert, Box, Button } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
-export const Flex = styled(Stack)`
-    flex-direction: row;
+export const Flex = styled(Box)`
     align-items: center;
+    display: flex;
 `;
 
 export const TooltipBody = styled(Box)`

@@ -71,7 +71,7 @@ const GeneralSetting = ({ quiz, setQuiz }: Props) => {
             toggleEditMode();
         } catch (error: any) {
             notify("Failed to update quiz setting", NotifyType.error);
-            console.log("failed to update quiz setting", error.message);
+            console.log("failed to update quiz setting", error);
         }
     };
 

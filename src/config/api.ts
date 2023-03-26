@@ -20,5 +20,6 @@ export const API = {
     UPDATE_QUIZ_SETTING: (quizId: string) => `/quizzes/${quizId}/update-setting`,
     INVITE_EMAIL: (quizId: string) => `/quizzes/${quizId}/invite-email`,
     INVITED_EMAILS: (quizId: string) => `/quizzes/${quizId}/invited-emails`,
-    REMOVE_INVITED_EMAIL: (quizId: string, email: string) => `/quizzes/${quizId}/invited-emails?email=${email}`
+    REMOVE_INVITED_EMAIL: (quizId: string, email: string) => `/quizzes/${quizId}/invited-emails?email=${email}`,
+    GET_QUIZ_ANSWER_INFO: (code: string) => `/quiz-answer/info/${code}`
 };
