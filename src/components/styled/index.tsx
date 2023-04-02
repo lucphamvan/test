@@ -49,3 +49,8 @@ export const Card = styled(Box)`
     box-shadow: 0px 8px 18px -6px rgb(24 39 75 / 12%), 0px 12px 42px -4px rgb(24 39 75 / 12%);
     border-radius: 6px;
 `;
+
+export const Label = styled.label`
+    cursor: pointer;
+    user-select: none;
+`;

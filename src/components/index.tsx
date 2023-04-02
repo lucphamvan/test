@@ -6,5 +6,5 @@ export { Loading } from "./loading";
 export { default as Notification } from "./notification";
 export { default as ProfileButton } from "./profile-button";
 export { default as QuestionForm } from "./question-form";
-export { BreadcumbLink, Card, Flex, FullSizeAlert, SmallButton, TooltipBody } from "./styled";
+export { BreadcumbLink, Card, Flex, FullSizeAlert, Label, SmallButton, TooltipBody } from "./styled";
 export { default as TextFieldError } from "./text-field-error";

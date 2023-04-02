@@ -123,7 +123,7 @@ const InviteDialog = ({ isOpen, onClose, quiz, onTriggerRefetch }: Props) => {
     return (
         <Dialog open={isOpen} onClose={onClose} fullWidth>
             <DialogTitle sx={{ pb: "5px" }}>
-                <Heading style={{ fontSize: 20 }}>Invite user to join the quiz</Heading>
+                <Heading style={{ fontSize: 20 }}>INVITE USER TO THE QUIZ</Heading>
             </DialogTitle>{" "}
             <DialogContent style={{ paddingTop: 10, height: "100vh" }}>
                 <form onSubmit={handleSubmit(onSubmit)}>
