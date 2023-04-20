@@ -1,4 +1,5 @@
 import { Card, Flex } from "@/components";
+import { updateAnswer } from "@/services/quiz-answer.service";
 import { QuizAnswer } from "@/types/quiz";
 import { Box, Button, Grid, Stack } from "@mui/material";
 import { FC, useCallback, useState } from "react";
@@ -23,8 +24,9 @@ const QuizArea: FC<QuizAreaProps> = ({ quizAnswer, setQuizAnswer }) => {
                 newQuizAnswer.answers[index].selected_choice_ids = selected_choice_ids;
                 return newQuizAnswer;
             });
+            updateAnswer(quizAnswer.id, index, quizAnswer.email, selected_choice_ids);
         },
-        [setQuizAnswer]
+        [setQuizAnswer, quizAnswer.id, quizAnswer.email]
     );
 
     return (
