@@ -1,11 +1,13 @@
-import { getQuizAnswer, getQuizAnswerInfo } from "@/services/quiz-answer.service";
+import { getQuizAnswer, getQuizAnswerInfo, submitAnswer } from "@/services/quiz-answer.service";
 import { QuizAnswer, QuizAnswerInfo } from "@/types/quiz";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import { Box } from "@mui/material";
 import ErrorCard from "./error-card";
 import InfoCard from "./info-card";
 import QuizArea from "./quiz-area";
+import WelcomeCard from "./welcome-card";
 
 const DoQuiz = () => {
     const { code } = useParams<{ code: string }>();
@@ -15,6 +17,7 @@ const DoQuiz = () => {
     const [isQuizStarted, setIsQuizStarted] = useState(false);
     const [isValid, setIsValid] = useState(true);
     const [errMsg, setErrMsg] = useState("");
+    const [isSubmitted, setIsSubmitted] = useState(false);
 
     // check quiz information before start quiz
     const getQuizInfo = async (code: string) => {
@@ -50,6 +53,13 @@ const DoQuiz = () => {
         getQuizAnswerToDo(code);
     };
 
+    // on submit answer
+    const onSubmitAnswer = async () => {
+        if (!quizAnswer) return;
+        await submitAnswer(quizAnswer.id, quizAnswer.email);
+        setIsSubmitted(true);
+    };
+
     // ensure to get quiz info when code is changed
     useEffect(() => {
         if (!code) return;
@@ -58,11 +68,13 @@ const DoQuiz = () => {
 
     if (!isValid) return <ErrorCard errorMessage={errMsg} />;
 
-    if (!isQuizStarted) return <InfoCard quizInfo={quizInfo} onStartQuiz={onStartQuiz} />;
+    if (!isQuizStarted) return <WelcomeCard quizInfo={quizInfo} onStartQuiz={onStartQuiz} />;
+
+    if (isSubmitted) return <InfoCard message="the quiz is submitted" />;
 
     if (!quizAnswer) return <div>Loading...</div>;
 
-    return <QuizArea quizAnswer={quizAnswer} setQuizAnswer={setQuizAnswer} />;
+    return <QuizArea quizAnswer={quizAnswer} setQuizAnswer={setQuizAnswer} onSubmitAnswer={onSubmitAnswer} />;
 };
 
 export default DoQuiz;

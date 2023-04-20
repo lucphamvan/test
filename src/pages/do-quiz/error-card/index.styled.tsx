@@ -11,6 +11,7 @@ export const StyledErrorCard = styled(Box)`
 
     .message {
         color: #5a605e;
+        font-size: 1.5rem;
     }
 
     padding: 1rem;

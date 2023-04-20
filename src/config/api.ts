@@ -23,5 +23,6 @@ export const API = {
     REMOVE_INVITED_EMAIL: (quizId: string, email: string) => `/quizzes/${quizId}/invited-emails?email=${email}`,
     GET_QUIZ_ANSWER_INFO: (code: string) => `/quiz-answer/info/${code}`,
     GET_QUIZ_ANSWER: (code: string) => `/quiz-answer/${code}`,
-    UPDATE_ANSWER: `/quiz-answer`
+    UPDATE_ANSWER: `/quiz-answer`,
+    SUBMIT_ANSWER: `/quiz-answer/submit`
 };

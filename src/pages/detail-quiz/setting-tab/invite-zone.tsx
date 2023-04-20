@@ -67,7 +67,7 @@ const InviteZone = ({ quiz, setQuiz }: Props) => {
                                 <Collapse in={isExpanded}>
                                     <Stack gap="0.5rem">
                                         <br />
-                                        <Heading>Invited List</Heading>
+                                        <Heading>Invited Persons</Heading>
                                         <Grid container spacing="0.5rem">
                                             {invitedEmails?.map((invitedEmail) => (
                                                 <InviteEmailItem

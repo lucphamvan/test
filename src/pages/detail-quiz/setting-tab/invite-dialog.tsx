@@ -81,13 +81,13 @@ const InviteDialog = ({ isOpen, onClose, quiz, onTriggerRefetch }: Props) => {
         return fields.map((field, index) => {
             const error = errors.data && (errors as any).data[index];
             return (
-                <Flex key={field.id} gap="1rem" style={{ alignItems: "baseline" }}>
+                <Flex key={field.id} gap="1rem">
                     <TextField
                         label="Email"
                         variant="outlined"
                         size="small"
                         fullWidth
-                        {...register(`data.${index}.email` as const)}
+                        {...register(`data.${index}.email`)}
                         error={!!error?.email}
                         helperText={error?.email?.message}
                     />
@@ -96,11 +96,11 @@ const InviteDialog = ({ isOpen, onClose, quiz, onTriggerRefetch }: Props) => {
                         variant="outlined"
                         size="small"
                         fullWidth
-                        {...register(`data.${index}.name` as const)}
+                        {...register(`data.${index}.name`)}
                         error={!!error?.name}
                         helperText={error?.name?.message}
                     />
-                    <IconButton sx={{ transform: "translateY(4px)" }} onClick={() => handleRemove(index)}>
+                    <IconButton onClick={() => handleRemove(index)}>
                         <Delete />
                     </IconButton>
                 </Flex>
@@ -116,16 +116,21 @@ const InviteDialog = ({ isOpen, onClose, quiz, onTriggerRefetch }: Props) => {
             notify("Invite successfully", NotifyType.success);
             onTriggerRefetch();
         } catch (error: any) {
-            notify(error.message, NotifyType.error);
+            const message = error?.response?.data?.error as string;
+            if (message?.includes("duplicate")) {
+                notify("Email was already invited to this quiz", NotifyType.error);
+            } else {
+                notify("Something went wrong", NotifyType.error);
+            }
         }
     };
 
     return (
         <Dialog open={isOpen} onClose={onClose} fullWidth>
             <DialogTitle sx={{ pb: "5px" }}>
-                <Heading style={{ fontSize: 20 }}>INVITE USER TO THE QUIZ</Heading>
-            </DialogTitle>{" "}
-            <DialogContent style={{ paddingTop: 10, height: "100vh" }}>
+                <Heading>INVITE USER TO THE QUIZ</Heading>
+            </DialogTitle>
+            <DialogContent style={{ paddingTop: 10, minHeight: "30vh", paddingRight: "0.85rem" }}>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <Stack gap="1rem">{renderFields()}</Stack>
                 </form>

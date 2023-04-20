@@ -1,4 +1,5 @@
 export { Avatar } from "./avatar";
+export { default as Countdown } from "./countdown";
 export { DndContext, DragContext } from "./dnd-context";
 export { Heading } from "./heading";
 export { default as InputNumber } from "./input-number";
